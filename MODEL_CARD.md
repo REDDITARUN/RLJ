@@ -23,7 +23,7 @@ pipeline_tag: image-text-to-text
 license: apache-2.0
 ---
 
-# CVJ_VLMs — Vision Encoder Stitching Benchmark (0.5B)
+# CLIP-ViT-IJEPA-VLMs-0.5B — Vision Encoder Stitching Benchmark
 
 **Which frozen vision encoder produces the best embeddings for a VLM?**
 
@@ -35,7 +35,6 @@ This repo contains trained **projector weights + LoRA adapters** from a controll
 |-------|---|
 | **Training Code** | [github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM](https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM) |
 | **1.5B Version** | [Teen-Different/CLIP-ViT-IJEPA-VLMs-1.5B](https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-1.5B) |
-| **W&B Dashboard** | [wandb.ai/tarunreddi-university-at-buffalo/rlj-vlm-benchmark](https://wandb.ai/tarunreddi-university-at-buffalo/rlj-vlm-benchmark) |
 | **Blog Post** | [teendifferent.substack.com](https://teendifferent.substack.com/) |
 
 ---
@@ -65,7 +64,7 @@ This repo contains trained **projector weights + LoRA adapters** from a controll
 | **Dataset** | HuggingFaceM4/the_cauldron (cocoqa subset, 46k Q&A pairs) |
 | **Optimizer** | AdamW, lr=1e-4, linear warmup 100 steps |
 | **Steps** | 2,000 optimizer steps, effective batch size 16 |
-| **Hardware** | Single T4 GPU (~18 min per encoder) |
+| **Hardware** | Single A100 GPU (~18 min per encoder) |
 
 ---
 
@@ -139,7 +138,7 @@ from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
 from huggingface_hub import hf_hub_download, snapshot_download
 
-REPO = "Teen-Different/CVJ_VLMs"
+REPO = "Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B"
 ENCODER = "clip"  # or "vit" or "ijepa"
 
 # Download weights
@@ -200,13 +199,13 @@ git clone https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM.git && cd CLIP-ViT-IJ
 pip install -r requirements.txt
 
 # Inference
-python inference.py --encoder clip --image photo.jpg --from-hub Teen-Different/CVJ_VLMs
+python inference.py --encoder clip --image photo.jpg --from-hub Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B
 
 # Evaluate
-python eval.py --from-hub Teen-Different/CVJ_VLMs
+python eval.py --from-hub Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B
 
 # Interactive
-python inference.py --encoder clip --image photo.jpg --from-hub Teen-Different/CVJ_VLMs --interactive
+python inference.py --encoder clip --image photo.jpg --from-hub Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B --interactive
 ```
 
 ---
@@ -233,10 +232,10 @@ python inference.py --encoder clip --image photo.jpg --from-hub Teen-Different/C
 ## Citation
 
 ```bibtex
-@misc{cvj-vlms-0.5b-2026,
-  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark (0.5B)},
+@misc{clip-vit-ijepa-vlm-2026,
+  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark},
   author={Tarun Reddi},
   year={2026},
-  url={https://huggingface.co/Teen-Different/CVJ_VLMs}
+  url={https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM}
 }
 ```

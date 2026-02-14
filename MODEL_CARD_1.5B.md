@@ -29,13 +29,12 @@ license: apache-2.0
 
 This repo contains trained **projector weights + LoRA adapters** from a controlled experiment comparing three vision encoders stitched into **Qwen2.5-1.5B-Instruct**. Trained on **VQAv2** for 1 full epoch (~5,173 steps).
 
-> **See also:** [0.5B version (COCO-QA training)](https://huggingface.co/Teen-Different/CVJ_VLMs)
+> **See also:** [0.5B version (COCO-QA training)](https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B)
 
 | Links | |
 |-------|---|
 | **Training Code** | [github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM](https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM) |
-| **0.5B Version** | [Teen-Different/CVJ_VLMs](https://huggingface.co/Teen-Different/CVJ_VLMs) |
-| **W&B Dashboard** | [wandb.ai/tarunreddi-university-at-buffalo/rlj-vlm-benchmark](https://wandb.ai/tarunreddi-university-at-buffalo/rlj-vlm-benchmark) |
+| **0.5B Version** | [Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B](https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B) |
 | **Blog Post** | [teendifferent.substack.com](https://teendifferent.substack.com/) |
 
 ---
@@ -65,7 +64,7 @@ This repo contains trained **projector weights + LoRA adapters** from a controll
 | **Dataset** | HuggingFaceM4/the_cauldron (vqav2 subset) |
 | **Optimizer** | AdamW, lr=1e-4, linear warmup 100 steps |
 | **Steps** | 5,173 (1 full epoch, effective batch size 16) |
-| **Hardware** | Single T4 GPU |
+| **Hardware** | Single A100 GPU |
 
 ---
 
@@ -239,10 +238,10 @@ done
 ## Citation
 
 ```bibtex
-@misc{cvj-vlms-1.5b-2026,
-  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark (1.5B)},
+@misc{clip-vit-ijepa-vlm-2026,
+  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark},
   author={Tarun Reddi},
   year={2026},
-  url={https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-1.5B}
+  url={https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM}
 }
 ```

@@ -12,9 +12,8 @@ This repo contains a controlled benchmark comparing three vision encoders — **
 
 | Links | |
 |-------|---|
-| **Trained Models (0.5B)** | [huggingface.co/Teen-Different/CVJ_VLMs](https://huggingface.co/Teen-Different/CVJ_VLMs) |
+| **Trained Models (0.5B)** | [huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B](https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B) |
 | **Trained Models (1.5B)** | [huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-1.5B](https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-1.5B) |
-| **W&B Dashboard** | [wandb.ai/tarunreddi-university-at-buffalo/rlj-vlm-benchmark](https://wandb.ai/tarunreddi-university-at-buffalo/rlj-vlm-benchmark) |
 | **Blog Post** | [teendifferent.substack.com](https://teendifferent.substack.com/) |
 
 ---
@@ -38,7 +37,7 @@ This repo contains a controlled benchmark comparing three vision encoders — **
 | **LLM** | Qwen/Qwen2.5-0.5B-Instruct (frozen + LoRA r=16) |
 | **Dataset** | the_cauldron / cocoqa (46k Q&A pairs) |
 | **Steps** | 2,000 (effective batch 16) |
-| **Hardware** | Single T4 GPU (~18 min/encoder) |
+| **Hardware** | Single A100 GPU (~18 min/encoder) |
 
 **Training Loss:**
 
@@ -63,7 +62,7 @@ This repo contains a controlled benchmark comparing three vision encoders — **
 | **LLM** | Qwen/Qwen2.5-1.5B-Instruct (frozen + LoRA r=16) |
 | **Dataset** | the_cauldron / vqav2 |
 | **Steps** | 5,173 (1 epoch, effective batch 16) |
-| **Hardware** | Single T4 GPU |
+| **Hardware** | Single A100 GPU |
 
 **Training Loss:**
 
@@ -248,7 +247,7 @@ cfg.lora_rank = 32  # increase for larger models
   title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark},
   author={Tarun Reddi},
   year={2026},
-  url={https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM}
+  url={https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM},
 }
 ```
 
