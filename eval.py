@@ -18,7 +18,7 @@ from typing import Dict, List, Optional
 import torch
 from tqdm import tqdm
 
-from inference import load_from_local, TrainedVLM
+from inference import load_from_local, load_from_hub, TrainedVLM
 from data import CauldronDataset
 
 
@@ -178,6 +178,7 @@ def evaluate_encoder(
     encoder_name: str,
     benchmarks: Optional[List[str]] = None,
     save_dir: str = "outputs",
+    from_hub: Optional[str] = None,
     max_samples: int = 1000,
 ) -> Dict[str, dict]:
     """Evaluate a single encoder on multiple benchmarks.
@@ -185,7 +186,8 @@ def evaluate_encoder(
     Args:
         encoder_name: one of "vit", "clip", "ijepa".
         benchmarks: list of benchmark names (default: all).
-        save_dir: where trained weights are stored.
+        save_dir: where trained weights are stored (local mode).
+        from_hub: HF repo id to load from (e.g. "Teen-Different/CLIP-ViT-IJEPA-VLM-0.5B").
         max_samples: max samples per benchmark.
 
     Returns:
@@ -194,11 +196,15 @@ def evaluate_encoder(
     if benchmarks is None:
         benchmarks = list(BENCHMARKS.keys())
 
+    source = from_hub if from_hub else f"{save_dir}/{encoder_name}/"
     print(f"\n{'=' * 60}", flush=True)
-    print(f"  EVALUATING: {encoder_name.upper()}", flush=True)
+    print(f"  EVALUATING: {encoder_name.upper()}  (from: {source})", flush=True)
     print(f"{'=' * 60}", flush=True)
 
-    model = load_from_local(encoder_name=encoder_name, save_dir=save_dir)
+    if from_hub:
+        model = load_from_hub(repo_id=from_hub, encoder_name=encoder_name)
+    else:
+        model = load_from_local(encoder_name=encoder_name, save_dir=save_dir)
 
     all_results = {}
     for bench_name in benchmarks:
@@ -219,9 +225,17 @@ def run_full_eval(
     encoder_names: Optional[List[str]] = None,
     benchmarks: Optional[List[str]] = None,
     save_dir: str = "outputs",
+    from_hub: Optional[str] = None,
     max_samples: int = 1000,
 ) -> dict:
     """Run evaluation for all encoders on all benchmarks.
+
+    Args:
+        encoder_names: list of encoder names (default: all three).
+        benchmarks: list of benchmark names (default: all).
+        save_dir: local directory with trained weights.
+        from_hub: HF repo id to load from instead of local.
+        max_samples: max samples per benchmark.
 
     Returns:
         Nested dict: encoder_name -> benchmark_name -> results.
@@ -231,12 +245,14 @@ def run_full_eval(
 
     all_results = {}
     for enc in encoder_names:
-        enc_dir = os.path.join(save_dir, enc)
-        if not os.path.isdir(enc_dir):
-            print(f"\n  [SKIP] {enc}: no trained weights at {enc_dir}/", flush=True)
-            continue
+        if not from_hub:
+            enc_dir = os.path.join(save_dir, enc)
+            if not os.path.isdir(enc_dir):
+                print(f"\n  [SKIP] {enc}: no trained weights at {enc_dir}/", flush=True)
+                continue
         all_results[enc] = evaluate_encoder(
-            enc, benchmarks=benchmarks, save_dir=save_dir, max_samples=max_samples,
+            enc, benchmarks=benchmarks, save_dir=save_dir,
+            from_hub=from_hub, max_samples=max_samples,
         )
 
     # ---- Print summary table ----
@@ -337,7 +353,12 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--save_dir", type=str, default="outputs",
-        help="Directory with trained model weights.",
+        help="Local directory with trained model weights.",
+    )
+    parser.add_argument(
+        "--from-hub", type=str, default=None, metavar="REPO_ID",
+        help="Load from HuggingFace Hub instead of local "
+             "(e.g. Teen-Different/CLIP-ViT-IJEPA-VLM-0.5B).",
     )
     args = parser.parse_args()
 
@@ -348,5 +369,6 @@ if __name__ == "__main__":
         encoder_names=encoders,
         benchmarks=benchmarks,
         save_dir=args.save_dir,
+        from_hub=args.from_hub,
         max_samples=args.max_samples,
     )
