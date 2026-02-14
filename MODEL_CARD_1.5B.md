@@ -15,7 +15,7 @@ tags:
   - ijepa
   - vit
   - lora
-  - benchmark
+  - comparison
   - embedding-comparison
 language:
   - en
@@ -23,7 +23,7 @@ pipeline_tag: image-text-to-text
 license: apache-2.0
 ---
 
-# CLIP-ViT-IJEPA-VLMs-1.5B — Vision Encoder Stitching Benchmark (1.5B)
+# CLIP-ViT-IJEPA-VLMs-1.5B — Vision Encoder Stitching Comparison
 
 **Which frozen vision encoder produces the best embeddings for a VLM?**
 
@@ -239,7 +239,7 @@ done
 
 ```bibtex
 @misc{clip-vit-ijepa-vlm-2026,
-  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark},
+  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Comparison},
   author={Tarun Reddi},
   year={2026},
   url={https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM}

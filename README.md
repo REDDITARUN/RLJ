@@ -1,8 +1,8 @@
-# CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark
+# CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Comparison
 
 **Which frozen vision encoder produces the best embeddings for building a Vision-Language Model?**
 
-This repo contains a controlled benchmark comparing three vision encoders — **CLIP**, **Supervised ViT**, and **I-JEPA** — stitched into the same frozen LLM using a small trainable projector + LoRA. We measure convergence speed, final loss, and downstream VQA accuracy to understand how pre-training strategy affects VLM performance.
+This repo contains a controlled comparison of three vision encoders — **CLIP**, **Supervised ViT**, and **I-JEPA** — stitched into the same frozen LLM using a small trainable projector + LoRA. We measure convergence speed, final loss, and downstream VQA accuracy to understand how pre-training strategy affects VLM performance.
 
 ```
 [Frozen Vision Encoder] ──► [Trainable Projector] ──► [Frozen LLM + LoRA]
@@ -244,7 +244,7 @@ cfg.lora_rank = 32  # increase for larger models
 
 ```bibtex
 @misc{clip-vit-ijepa-vlm-2026,
-  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Benchmark},
+  title={CLIP vs ViT vs I-JEPA: Vision Encoder Stitching Comparison},
   author={Tarun Reddi},
   year={2026},
   url={https://github.com/REDDITARUN/CLIP-ViT-IJEPA-VLM},
