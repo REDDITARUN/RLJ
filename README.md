@@ -14,7 +14,7 @@ This repo contains a controlled comparison of three vision encoders — **CLIP**
 |-------|---|
 | **Trained Models (0.5B)** | [huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B](https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-0.5B) |
 | **Trained Models (1.5B)** | [huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-1.5B](https://huggingface.co/Teen-Different/CLIP-ViT-IJEPA-VLMs-1.5B) |
-| **Blog Post** | [teendifferent.substack.com](https://teendifferent.substack.com/) |
+| **Blog Post** | [teendifferent.substack.com](https://teendifferent.substack.com/p/stitching-vision-into-llms-a-comparative) |
 
 ---
 
